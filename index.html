@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的时钟</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "SF Mono", "Consolas", monospace;
+    background: #0f1115;
+    color: #e8eaf0;
+  }
+  .clock {
+    font-size: clamp(48px, 12vw, 120px);
+    font-weight: 300;
+    letter-spacing: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .date {
+    margin-top: 20px;
+    font-size: 18px;
+    opacity: 0.6;
+    letter-spacing: 2px;
+  }
+  .label {
+    margin-top: 8px;
+    font-size: 13px;
+    opacity: 0.35;
+  }
+</style>
+</head>
+<body>
+  <div class="clock" id="clock">--:--:--</div>
+  <div class="date" id="date"></div>
+  <div class="label">GitHub Pages 静态时钟</div>
+
+  <script>
+    function update() {
+      const now = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      document.getElementById('clock').textContent =
+        `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+      document.getElementById('date').textContent =
+        `${now.getFullYear()} 年 ${now.getMonth() + 1} 月 ${now.getDate()} 日`;
+    }
+    update();
+    setInterval(update, 1000);
+  </script>
+</body>
+</html>
